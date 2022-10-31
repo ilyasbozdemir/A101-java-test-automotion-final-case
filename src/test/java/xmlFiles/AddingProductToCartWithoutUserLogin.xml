@@ -1,0 +1,10 @@
+<suite name="TestNG Listener">
+    <listeners>
+        <listener class-name="tests.Listeners"/>
+    </listeners>
+    <test name="TestNG Test2">
+        <classes>
+            <class name="tests.Test2"/>
+        </classes>
+    </test>
+</suite>
