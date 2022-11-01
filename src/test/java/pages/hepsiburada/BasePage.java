@@ -1,4 +1,4 @@
-package pages.hepsiburada.com;
+package pages.HepsiBurada;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,11 +9,11 @@ import utilities.PropertiesFile;
 
 import java.util.List;
 
-public  class BasePage {
-    WebDriver driver;
-    public  String getUrl;
-    public String expectedTitle="";
-    public String getTitle="";
+public    class BasePage {
+    WebDriver driver ;
+    public String getUrl;
+    public String expectedTitle;
+    public String getTitle;
     public void hover(By locator){
         Actions action = new Actions(driver);
         action.moveToElement(find(locator)).perform();
@@ -37,9 +37,8 @@ public  class BasePage {
     public Boolean isDisplayed(By locator){
         return find(locator).isDisplayed();
     }
-
     public  By getPropertiesToXPath(PagePath path, String Key){
-       return By.xpath(PropertiesFile.getProperties(path,Key));
+       return By.xpath( PropertiesFile.getProperties(path,Key));
     }
 
 }

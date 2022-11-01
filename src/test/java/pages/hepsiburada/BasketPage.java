@@ -1,4 +1,4 @@
-package pages.hepsiburada.com;
+package pages.HepsiBurada;
 
 import org.openqa.selenium.WebDriver;
 

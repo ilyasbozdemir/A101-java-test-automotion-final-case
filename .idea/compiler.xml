@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="A101-java-test-automotion-final-case" />
+        <module name="test-automotion-final-case" />
       </profile>
     </annotationProcessing>
   </component>

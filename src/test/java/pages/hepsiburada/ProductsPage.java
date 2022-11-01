@@ -1,4 +1,4 @@
-package pages.hepsiburada.com;
+package pages.HepsiBurada;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ProductsPage extends BasePage{
-    public By productNameLocator =  getPropertiesToXPath(PagePath.productsPagePath,"productNameLocator");
-  ProductDetailsPage productDetailsPage;
+    By productNameLocator =  getPropertiesToXPath(PagePath.productsPagePath,"productNameLocator");
+  pages.HepsiBurada.ProductDetailsPage productDetailsPage;
     public WebElement selectedProduct;
 
     public ProductsPage(WebDriver driver){
@@ -41,16 +41,7 @@ public class ProductsPage extends BasePage{
 
             if(driver.getTitle().equals("Fiyatı")) {
                 //diğer satıcılardan da ürünü al
-                click(productDetailsPage.addToCardLocator);
-                var El= findAll(productDetailsPage.addToCardSmallLocators);
-                int index=0;
-               for(WebElement e:El){
-                   index++;
-                   if(index==2){
-                       break;
-                   }
-                   e.click();
-               }
+
                 driver.close();//sekmeyi kapat
             }
         }

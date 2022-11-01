@@ -54,11 +54,14 @@ public class PropertiesFile {
             InputStream input = new FileInputStream(file);
             prop.load(input);
             data = prop.getProperty(key);
+
+            System.out.println(path.toString()+" "+key +" "+data);
+
         } catch (Exception exp) {
             System.out.println(exp.getMessage());
             System.out.println(exp.getCause());
             exp.printStackTrace();
         }
-        return data;
+        return  data;
     }
 }

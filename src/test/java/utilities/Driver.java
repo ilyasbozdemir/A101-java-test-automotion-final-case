@@ -1,5 +1,4 @@
 package utilities;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,19 +6,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.opera.OperaDriver;
-
 public class Driver {
-    private Driver(){
-
-    }
     private static WebDriver driver;
     private static String browser = "";
 
     public static WebDriver getDriver(){
-        browser = PropertiesFile
-                .getProperties(PagePath.configurationPath,"browser");
-
+        browser = PropertiesFile.getProperties(PagePath.configurationPath,"browser");
         if (driver == null){
+
             switch (browser) {
                 case "chrome":
                     ChromeOptions options = new ChromeOptions();
@@ -48,7 +42,6 @@ public class Driver {
                 default:
                     driver = new ChromeDriver();
             }
-
             driver.manage().window().maximize();
         }
         return driver;
