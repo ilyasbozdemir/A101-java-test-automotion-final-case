@@ -59,6 +59,6 @@ public class PropertiesFile {
             System.out.println(exp.getCause());
             exp.printStackTrace();
         }
-        return  data;
+        return data;
     }
 }

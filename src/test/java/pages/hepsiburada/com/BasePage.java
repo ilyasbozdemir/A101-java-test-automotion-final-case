@@ -9,7 +9,7 @@ import utilities.PropertiesFile;
 
 import java.util.List;
 
-public    class BasePage {
+public  class BasePage {
     WebDriver driver;
     public  String getUrl;
     public String expectedTitle="";
@@ -37,8 +37,9 @@ public    class BasePage {
     public Boolean isDisplayed(By locator){
         return find(locator).isDisplayed();
     }
+
     public  By getPropertiesToXPath(PagePath path, String Key){
-       return By.xpath( PropertiesFile.getProperties(path,Key));
+       return By.xpath(PropertiesFile.getProperties(path,Key));
     }
 
 }

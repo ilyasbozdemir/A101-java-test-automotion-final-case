@@ -6,9 +6,6 @@ import utilities.PagePath;
 import utilities.PropertiesFile;
 
 public class HomePage extends BasePage {
-    public  class Locators{
-        public By acceptCookiesLocator = getPropertiesToXPath(PagePath.homePagePath,"acceptCookiesLocator");
-    }
     public By acceptCookiesLocator = getPropertiesToXPath(PagePath.homePagePath,"acceptCookiesLocator");
     public By searchInboxLocator=getPropertiesToXPath(PagePath.homePagePath,"searchInboxLocator");
     public By searchButtonLocator=getPropertiesToXPath(PagePath.homePagePath,"searchButtonLocator");

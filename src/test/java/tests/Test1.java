@@ -11,7 +11,6 @@ import utilities.PropertiesFile;
 
 public class Test1 extends BaseTest {
 
-
     @Test(priority = 1,description = "Kullanıcı Hepsiburada.com sitesini ziyaret eder.")
     public void step1(){
         try{

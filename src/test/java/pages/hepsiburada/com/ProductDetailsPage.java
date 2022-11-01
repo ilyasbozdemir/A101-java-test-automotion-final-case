@@ -9,7 +9,7 @@ public class ProductDetailsPage  extends BasePage{
         super.driver=driver;
         this.getUrl="https://www.hepsiburada.com/";
     }
-    By addToCardSmallLocators =  getPropertiesToXPath(PagePath.productDetailsPagePath,"addToCardSmallLocators");
-    By addToCardLocator =  getPropertiesToXPath(PagePath.productDetailsPagePath,"addToCardSmallLocator");
+    public  By addToCardSmallLocators =  getPropertiesToXPath(PagePath.productDetailsPagePath,"addToCardSmallLocators");
+    public By addToCardLocator =  getPropertiesToXPath(PagePath.productDetailsPagePath,"addToCardSmallLocator");
 
 }

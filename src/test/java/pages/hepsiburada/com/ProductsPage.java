@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ProductsPage extends BasePage{
-    By productNameLocator =  getPropertiesToXPath(PagePath.productsPagePath,"productNameLocator");
-  pages.hepsiburada.com.ProductDetailsPage productDetailsPage;
+    public By productNameLocator =  getPropertiesToXPath(PagePath.productsPagePath,"productNameLocator");
+  ProductDetailsPage productDetailsPage;
     public WebElement selectedProduct;
 
     public ProductsPage(WebDriver driver){
