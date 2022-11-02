@@ -43,6 +43,7 @@ public class ProductsPage extends BasePage{
                 driver.switchTo().window(windowHandle);
                 //productDetails page:
 
+                /*
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
                 WebElement addToCardSmallFirstButtonLocator = wait.until(ExpectedConditions.visibilityOfElementLocated(productDetailsPage.addToCardSmallFirstButtonLocator));
 
@@ -58,6 +59,8 @@ public class ProductsPage extends BasePage{
                 Thread.sleep(1000);
 
                 driver.close();
+                */
+
                 break;
 
             }

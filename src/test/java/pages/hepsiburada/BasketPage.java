@@ -17,6 +17,7 @@ public class BasketPage extends BasePage{
     public By cartItemCountLocator = By.xpath("//*[@id=\"cartItemCount\"]");
 
     public void verifyCart() {
+        //burda göremiyor sepette ki sayıyı
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement itemCountLocator = wait
                 .until(ExpectedConditions.visibilityOfElementLocated(cartItemCountLocator));

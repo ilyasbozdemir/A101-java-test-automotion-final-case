@@ -44,7 +44,7 @@ public class AddingProductToCartWithUserLogin extends BaseTest{
     }
     @Test(dependsOnMethods = "step3",description = "Kullanıcı, burada satın almak istediği ürün için arama yapacaktır.")
     public void step4(){
-        homePage.searchProduct("makarna");
+        homePage.searchProduct("pil");
     }
     @Test(dependsOnMethods = "step4",description = "Kullanıcı, Arama sonucunda ekrana gelen ürün listesinden (veya tek bir sonuç da dönmüş olabilir) ürün seçer.")
     public void step5() throws InterruptedException {
@@ -56,6 +56,7 @@ public class AddingProductToCartWithUserLogin extends BaseTest{
     }
     @Test(dependsOnMethods = "step6",description = "Seçilen ürünün doğru olarak eklendiği ‘Sepetim’ sayfasında doğrulanmalıdır.")
     private void step7(){
-        //basketPage.verifyCart();
+
+        basketPage.verifyCart();
     }
 }
