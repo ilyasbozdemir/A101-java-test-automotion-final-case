@@ -33,6 +33,7 @@ public class ProductsPage extends BasePage{
     }
     public void chooseTwoDifferentProductsAddToCart() throws InterruptedException {
 
+        //test edilmekte
         productDetailsPage = new ProductDetailsPage(driver);
         String firstWindow = driver.getWindowHandle();
 

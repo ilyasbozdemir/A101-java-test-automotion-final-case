@@ -4,7 +4,9 @@
     </listeners>
     <test name="TestNG Test2">
         <classes>
-            <class name="tests.AddingProductToCartWithoutUserLogin"/>
+            <class name="tests.AddingProductToCartWithoutUserLogin">
+
+            </class>
         </classes>
     </test>
 </suite>
