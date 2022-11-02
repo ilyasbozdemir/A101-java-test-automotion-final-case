@@ -2,15 +2,22 @@ package pages.HepsiBurada;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utilities.PagePath;
 
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
+
 public class ProductsPage extends BasePage{
     By productNameLocator =  getPropertiesToXPath(PagePath.productsPagePath,"productNameLocator");
-  pages.HepsiBurada.ProductDetailsPage productDetailsPage;
+
+    ProductDetailsPage productDetailsPage;
     public WebElement selectedProduct;
 
     public ProductsPage(WebDriver driver){
@@ -19,34 +26,43 @@ public class ProductsPage extends BasePage{
     public List<WebElement> getAllProducts(){
         return findAll(productNameLocator);
     }
-    public void selectProduct(int index)  {
+    public void selectProduct(int index) throws InterruptedException {
         selectedProduct =  getAllProducts().get(index);
+        scrollIntoElement(selectedProduct);
+        hover(selectedProduct);
     }
     public void chooseTwoDifferentProductsAddToCart() throws InterruptedException {
 
         productDetailsPage = new ProductDetailsPage(driver);
-        // test aşamasında
         String firstWindow = driver.getWindowHandle();
-        Thread.sleep(3000);
 
-        Set<String> windows = driver.getWindowHandles();
-        Iterator<String> itr = windows.iterator();
+        selectedProduct.click();
+        for (String windowHandle : driver.getWindowHandles()) {
+            if(!firstWindow.contentEquals(windowHandle)) {
+                driver.switchTo().window(windowHandle);
+                //productDetails page:
 
-        while(itr.hasNext()) {
-            Thread.sleep(1000);
-            String window = itr.next();
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                WebElement addToCardSmallFirstButtonLocator = wait.until(ExpectedConditions.visibilityOfElementLocated(productDetailsPage.addToCardSmallFirstButtonLocator));
 
-            driver.switchTo().window(window);
-            System.out.println(driver.getTitle());
+                scrollIntoElement(addToCardSmallFirstButtonLocator);
+                addToCardSmallFirstButtonLocator.click();
 
-            if(driver.getTitle().equals("Fiyatı")) {
-                //diğer satıcılardan da ürünü al
+                Thread.sleep(1000);
+                WebElement addToCardSecondFirstButtonLocator = wait.until(ExpectedConditions.visibilityOfElementLocated(productDetailsPage.addToCardSmallFirstButtonLocator));
 
-                driver.close();//sekmeyi kapat
+                scrollIntoElement(addToCardSecondFirstButtonLocator);
+                addToCardSecondFirstButtonLocator.click();
+
+                Thread.sleep(1000);
+
+                driver.close();
+                break;
+
             }
         }
+        Thread.sleep(3000);
         driver.switchTo().window(firstWindow);
-
     }
 
 

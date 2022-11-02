@@ -1,5 +1,6 @@
 package logger;
 
+import org.apache.log4j.LogManager;
 import org.testng.log4testng.Logger;
 
 import java.time.LocalDateTime;

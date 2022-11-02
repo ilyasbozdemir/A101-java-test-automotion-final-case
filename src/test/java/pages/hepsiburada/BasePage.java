@@ -1,6 +1,7 @@
 package pages.HepsiBurada;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -17,6 +18,23 @@ public    class BasePage {
     public void hover(By locator){
         Actions action = new Actions(driver);
         action.moveToElement(find(locator)).perform();
+    }
+    public void hover(WebElement Element){
+        Actions action = new Actions(driver);
+        action.moveToElement(Element).perform();
+    }
+    public void scrollIntoElement(By locator) throws InterruptedException {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", find(locator));
+        Thread.sleep(500);
+    }
+    public void scrollIntoElement(WebElement element) throws InterruptedException {
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        Thread.sleep(500);
+    }
+    public void scrollBy(WebElement element,int xCoord,int yCoord) throws InterruptedException {
+
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy("+xCoord+","+yCoord+")", element);
     }
     public WebElement find(By locator){
         return driver.findElement(locator);
