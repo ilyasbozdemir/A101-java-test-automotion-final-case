@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities.PagePath;
 
 import java.time.Duration;
 
@@ -14,15 +15,21 @@ public class BasketPage extends BasePage{
         super.driver=driver;
         this.getUrl="";
     }
-    public By cartItemCountLocator = By.xpath("//*[@id=\"cartItemCount\"]");
+    public By gotoCartLocator =
+            getPropertiesToXPath(PagePath.basketPagePath,"gotoCartLocator");
+    public By BasketEmptyLocator =
+            getPropertiesToXPath(PagePath.basketPagePath,"BasketEmptyLocator");
+
+    public By  basketItemCount=
+            getPropertiesToXPath(PagePath.basketPagePath,"basketItemCount");
 
     public void verifyCart() {
-        //burda göremiyor sepette ki sayıyı
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement itemCountLocator = wait
-                .until(ExpectedConditions.visibilityOfElementLocated(cartItemCountLocator));
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(20,0)", itemCountLocator);
+        click(gotoCartLocator);
+        if(isTheBasketEmpty(BasketEmptyLocator) && find(basketItemCount).getText() == "2" ){
 
-        System.out.println(itemCountLocator.getText());
+        }
+    }
+    private boolean isTheBasketEmpty(By locator){
+        return find(locator).getText() != "Sepetin şu an boş";
     }
 }

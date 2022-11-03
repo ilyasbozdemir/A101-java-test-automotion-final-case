@@ -15,6 +15,7 @@ public    class BasePage {
     public String getUrl;
     public String expectedTitle;
     public String getTitle;
+
     public void hover(By locator){
         Actions action = new Actions(driver);
         action.moveToElement(find(locator)).perform();
@@ -24,17 +25,14 @@ public    class BasePage {
         action.moveToElement(Element).perform();
     }
     public void scrollIntoElement(By locator) throws InterruptedException {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", find(locator));
-        Thread.sleep(500);
+        Actions a = new Actions(driver);
+        a.moveToElement(find(locator));
+        a.perform();
     }
     public void scrollIntoElement(WebElement element) throws InterruptedException {
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-        Thread.sleep(500);
-    }
-    public void scrollBy(WebElement element,int xCoord,int yCoord) throws InterruptedException {
-
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy("+xCoord+","+yCoord+")", element);
+        Actions a = new Actions(driver);
+        a.moveToElement(element);
+        a.perform();
     }
     public WebElement find(By locator){
         return driver.findElement(locator);

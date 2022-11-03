@@ -1,4 +1,7 @@
 package tests;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -7,21 +10,20 @@ import utilities.PagePath;
 import utilities.PropertiesFile;
 
 import java.time.Duration;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 @Test(priority = 0,groups = "Test1Group")
 public class AddingProductToCartWithUserLogin extends BaseTest{
 
     @Test(priority = 1,description = "Kullanıcı Hepsiburada.com sitesini ziyaret eder.")
     public void step1() throws InterruptedException{
+
         driver.get(homePage.getUrl);
         delay(3);
         homePage.acceptCookies();
         homePage.getTitle = driver.getTitle();
         homePage.expectedTitle = "Türkiye'nin En Büyük Online Alışveriş Sitesi Hepsiburada.com";
         Assert.assertEquals(homePage.getTitle, homePage.expectedTitle,"Not on home page!");
+
     }
 
     @Test(dependsOnMethods = "step1",description = "Kullanıcı giriş işlemi yapılır.")
@@ -56,7 +58,7 @@ public class AddingProductToCartWithUserLogin extends BaseTest{
     }
     @Test(dependsOnMethods = "step6",description = "Seçilen ürünün doğru olarak eklendiği ‘Sepetim’ sayfasında doğrulanmalıdır.")
     private void step7(){
-
         basketPage.verifyCart();
+
     }
 }

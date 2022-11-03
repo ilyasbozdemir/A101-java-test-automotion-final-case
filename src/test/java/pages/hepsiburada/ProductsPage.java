@@ -15,7 +15,7 @@ import java.util.Set;
 import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
 
 public class ProductsPage extends BasePage{
-    By productNameLocator =  getPropertiesToXPath(PagePath.productsPagePath,"productNameLocator");
+    public By productNameLocator =  getPropertiesToXPath(PagePath.productsPagePath,"productNameLocator");
 
     ProductDetailsPage productDetailsPage;
     public WebElement selectedProduct;
@@ -33,7 +33,6 @@ public class ProductsPage extends BasePage{
     }
     public void chooseTwoDifferentProductsAddToCart() throws InterruptedException {
 
-        //test edilmekte
         productDetailsPage = new ProductDetailsPage(driver);
         String firstWindow = driver.getWindowHandle();
 
@@ -43,30 +42,22 @@ public class ProductsPage extends BasePage{
                 driver.switchTo().window(windowHandle);
                 //productDetails page:
 
-                /*
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-                WebElement addToCardSmallFirstButtonLocator = wait.until(ExpectedConditions.visibilityOfElementLocated(productDetailsPage.addToCardSmallFirstButtonLocator));
+                scrollIntoElement(productDetailsPage.merchantTabTriggerLocator);
+                click(productDetailsPage.merchantTabTriggerLocator);
 
-                scrollIntoElement(addToCardSmallFirstButtonLocator);
-                addToCardSmallFirstButtonLocator.click();
+                scrollIntoElement(productDetailsPage.addToCardSmallFirstButtonLocator);
+                click(productDetailsPage.addToCardSmallFirstButtonLocator);
 
-                Thread.sleep(1000);
-                WebElement addToCardSecondFirstButtonLocator = wait.until(ExpectedConditions.visibilityOfElementLocated(productDetailsPage.addToCardSmallFirstButtonLocator));
+                scrollIntoElement(productDetailsPage.addToCardSmallSecondButtonLocator);
+                click(productDetailsPage.addToCardSmallSecondButtonLocator);
 
-                scrollIntoElement(addToCardSecondFirstButtonLocator);
-                addToCardSecondFirstButtonLocator.click();
-
-                Thread.sleep(1000);
-
-                driver.close();
-                */
-
+                //
                 break;
 
             }
         }
         Thread.sleep(3000);
-        driver.switchTo().window(firstWindow);
+        //driver.switchTo().window(firstWindow);
     }
 
 
