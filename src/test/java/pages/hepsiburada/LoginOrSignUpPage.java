@@ -2,7 +2,12 @@ package pages.HepsiBurada;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import utilities.PagePath;
+
+import java.time.Duration;
 
 public class LoginOrSignUpPage extends BasePage{
 
@@ -18,12 +23,13 @@ public class LoginOrSignUpPage extends BasePage{
     public By passwordInputLocator=getPropertiesToXPath(PagePath.loginOrSignUpPagePath,"passwordInputLocator");
     public By emailSelectButtonLocator=getPropertiesToXPath(PagePath.loginOrSignUpPagePath,"emailSelectButtonLocator");
 
+    public By newDeviceLocator = By.xpath("//*[@id=\"root\"]/div/div/div[1]/div[2]/div/div/div[2]/div[2]/div/div/form/div/div[2]");
 
     public void Register(String emailAddress,String password){
 
     }
-    public void Login(String emailAddress,String password){
-
+    public void LoginWith(String emailAddress,String password){
+        hover(emailInputLocator);
         type(emailInputLocator,emailAddress);
         click(loginButtonLocator);
         type(passwordInputLocator,password);

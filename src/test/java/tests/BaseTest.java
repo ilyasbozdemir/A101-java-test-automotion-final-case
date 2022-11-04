@@ -12,7 +12,7 @@ import java.time.Duration;
 public class BaseTest implements Testable {
     WebDriver driver ;
     WebDriverWait driverWait;
-   protected HomePage homePage;
+    protected HomePage homePage;
     protected LoginOrSignUpPage loginOrSignUpPage;
     protected BasketPage basketPage;
     protected ProductsPage productsPage;

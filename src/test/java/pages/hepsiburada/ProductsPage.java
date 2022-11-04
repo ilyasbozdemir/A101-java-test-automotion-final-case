@@ -18,6 +18,7 @@ public class ProductsPage extends BasePage{
     public By productNameLocator =  getPropertiesToXPath(PagePath.productsPagePath,"productNameLocator");
 
     ProductDetailsPage productDetailsPage;
+    BasketPage basketPage;
     public WebElement selectedProduct;
 
     public ProductsPage(WebDriver driver){
@@ -26,38 +27,43 @@ public class ProductsPage extends BasePage{
     public List<WebElement> getAllProducts(){
         return findAll(productNameLocator);
     }
-    public void selectProduct(int index) throws InterruptedException {
+    public void selectProduct(int index)  {
+
         selectedProduct =  getAllProducts().get(index);
         scrollIntoElement(selectedProduct);
         hover(selectedProduct);
     }
-    public void chooseTwoDifferentProductsAddToCart() throws InterruptedException {
+    public void productsAddToCart()  {
 
         productDetailsPage = new ProductDetailsPage(driver);
+        basketPage= new BasketPage(driver);
         String firstWindow = driver.getWindowHandle();
-
         selectedProduct.click();
         for (String windowHandle : driver.getWindowHandles()) {
             if(!firstWindow.contentEquals(windowHandle)) {
                 driver.switchTo().window(windowHandle);
-                //productDetails page:
 
-                scrollIntoElement(productDetailsPage.merchantTabTriggerLocator);
-                click(productDetailsPage.merchantTabTriggerLocator);
+                scrollIntoElementAndClick(productDetailsPage.merchantTabTriggerLocator);
+                productDetailsPage.merchantCount = Integer
+                        .parseInt(find(productDetailsPage.merchantCountLocator).getText());
+                String title = getTitle();
+                if(productDetailsPage.merchantCount >= 2){
+                    for(int i=0;i<2;i++){
 
-                scrollIntoElement(productDetailsPage.addToCardSmallFirstButtonLocator);
-                click(productDetailsPage.addToCardSmallFirstButtonLocator);
-
-                scrollIntoElement(productDetailsPage.addToCardSmallSecondButtonLocator);
-                click(productDetailsPage.addToCardSmallSecondButtonLocator);
-
-                //
+                        WebElement merchantElement = productDetailsPage.merchantList().get(i);
+                        merchantElement.click();//
+                        productDetailsPage.addToCard();
+                        driver.navigate().back();
+                        WebDriverWait driverWait = new WebDriverWait(driver,Duration.ofMillis(10000));
+                        Assert.assertTrue(driverWait.until(ExpectedConditions.titleIs(title)));
+                        scrollIntoElementAndClick(productDetailsPage.merchantTabTriggerLocator);
+                    }
+                }
                 break;
-
             }
         }
-        Thread.sleep(3000);
-        //driver.switchTo().window(firstWindow);
+        driver.close();
+        driver.switchTo().window(firstWindow);
     }
 
 

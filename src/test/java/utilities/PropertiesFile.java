@@ -54,7 +54,7 @@ public class PropertiesFile {
             InputStream input = new FileInputStream(file);
             prop.load(input);
             data = prop.getProperty(key);
-            System.out.println(path+" "+key+" "+data);
+            //System.out.println(path+" "+key+" "+data);
 
         } catch (Exception exp) {
             System.out.println(exp.getMessage());
