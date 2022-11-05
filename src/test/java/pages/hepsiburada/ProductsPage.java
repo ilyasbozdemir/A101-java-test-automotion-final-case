@@ -6,14 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utilities.PagePath;
-
 import java.time.Duration;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
-
 public class ProductsPage extends BasePage{
     public By productNameLocator =  getPropertiesToXPath(PagePath.productsPagePath,"productNameLocator");
 
@@ -33,7 +27,7 @@ public class ProductsPage extends BasePage{
         scrollIntoElement(selectedProduct);
         hover(selectedProduct);
     }
-    public void productsAddToCart()  {
+    public void productsAddToCart() throws InterruptedException {
 
         productDetailsPage = new ProductDetailsPage(driver);
         basketPage= new BasketPage(driver);
@@ -52,7 +46,13 @@ public class ProductsPage extends BasePage{
 
                         WebElement merchantElement = productDetailsPage.merchantList().get(i);
                         merchantElement.click();//
+
+                        System.out.println("productDetailsPage");
+
+                        System.out.println(productDetailsPage.getProductName() + " - " + productDetailsPage.getMerchantName());
+
                         productDetailsPage.addToCard();
+
                         driver.navigate().back();
                         WebDriverWait driverWait = new WebDriverWait(driver,Duration.ofMillis(10000));
                         Assert.assertTrue(driverWait.until(ExpectedConditions.titleIs(title)));

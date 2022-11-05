@@ -42,9 +42,12 @@ public class BasketPage extends BasePage{
               PropertiesFile.getProperties(PagePath.basketPagePath,"secondMerchantName");
 */
 
-       /* for (WebElement element:findAll(merchantName)){
+        for (WebElement element:findAll(productName)){
             System.out.println(element.getText());
-        }*/
+        }
+        for (WebElement element:findAll(merchantName)){
+            System.out.println(element.getText());
+        }
 
 
 

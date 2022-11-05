@@ -21,6 +21,7 @@ public class HomePage extends BasePage {
         super.driver=driver;
         this.getUrl=PropertiesFile.getProperties(PagePath.configurationPath,"basePath");
         navbar= new Navbar();
+
     }
     public void acceptCookies(){
         if (isDisplayed(acceptCookiesLocator))

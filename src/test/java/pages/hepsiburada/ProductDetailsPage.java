@@ -16,6 +16,7 @@ public class ProductDetailsPage  extends BasePage{
             getPropertiesToXPath(PagePath.productDetailsPagePath,"merchantTabTriggerLocator");
     public By merchantListLocator= new By.ByClassName("merchant-list-item");
     public By productName = By.xpath("//*[@id=\"detail-container\"]/div/header/span");
+
     public By merchantName = By.xpath("//*[@id=\"detail-container\"]/div/span/a");
     public int merchantCount = 0;
     public By merchantCountLocator=By.xpath("//*[@id=\"merchantTabTrigger\"]/a/span/span");
@@ -29,15 +30,18 @@ public class ProductDetailsPage  extends BasePage{
         return super.findAll(merchantListLocator);
     }
     public String getProductName(){
-        return getText(productName);
+
+        return find(productName).getText();
+
     }
     public String getMerchantName(){
-        return  getText(merchantName);
+
+        return find(merchantName).getText();
+
     }
-    int i=0;
+
     public void addToCard(){
-        addToCardData();
-        i++;
+
         click(addToCardButtonLocator);
     }
     public void addToCardData(){

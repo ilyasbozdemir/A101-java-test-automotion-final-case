@@ -6,6 +6,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.opera.OperaDriver;
+
+import java.time.Duration;
+
 public class Driver {
     private static WebDriver driver;
     private static String browser = "";
@@ -43,6 +46,10 @@ public class Driver {
                     driver = new ChromeDriver();
             }
             driver.manage().window().maximize();
+            driver.manage().deleteAllCookies();
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
+
         }
         return driver;
     }

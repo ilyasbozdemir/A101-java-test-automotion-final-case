@@ -60,7 +60,6 @@ public  class BasePage {
                 .until(ExpectedConditions.elementToBeClickable(locator)).click();
 
     }
-
     public void type(By locator , String text){
         find(locator).sendKeys(text);
     }

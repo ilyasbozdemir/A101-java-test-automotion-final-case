@@ -52,7 +52,7 @@ public class AddingProductToCartWithUserLoginTest extends BaseTest{
     }
 
     @Test(priority = 6,description = "Seçilen ürün için 2 tane farklı satıcıdan ürün seçilip sepete eklenir.")
-    private void step6(){
+    private void step6() throws InterruptedException {
         productsPage.productsAddToCart();
     }
 
