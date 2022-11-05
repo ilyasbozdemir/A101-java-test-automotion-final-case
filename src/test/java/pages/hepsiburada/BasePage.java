@@ -13,11 +13,16 @@ import java.time.Duration;
 import java.util.List;
 
 public  class BasePage {
-    WebDriver driver ;
 
+    WebDriver driver ;
     public String getUrl;
     public String expectedTitle;
     public String getTitle;
+
+    public static String firstProductName;
+    public static String firstMerchantName;
+    public static String secondProductName;
+    public static String secondMerchantName;
 
 
     public void hover(By locator){
@@ -27,9 +32,6 @@ public  class BasePage {
     public void hover(WebElement Element){
         Actions action = new Actions(driver);
         action.moveToElement(Element).perform();
-    }
-    public void scrollElement(){
-
     }
     public void scrollIntoElement(By locator) {
         Actions a = new Actions(driver);
@@ -47,6 +49,7 @@ public  class BasePage {
     public String getTitle(){
         return driver.getTitle();
     }
+
     public String getText(By locator){
         return find(locator).getText();
     }

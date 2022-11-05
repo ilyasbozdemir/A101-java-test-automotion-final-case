@@ -31,13 +31,11 @@ public class ProductDetailsPage  extends BasePage{
     }
     public String getProductName(){
 
-        return find(productName).getText();
+        return find(productName).getAttribute("innerText").trim();
 
     }
     public String getMerchantName(){
-
-        return find(merchantName).getText();
-
+        return find(merchantName).getAttribute("innerText").trim();
     }
 
     public void addToCard(){

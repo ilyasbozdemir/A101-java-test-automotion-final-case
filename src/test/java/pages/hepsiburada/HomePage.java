@@ -2,6 +2,7 @@ package pages.HepsiBurada;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import pages.HepsiBurada.Components.Navbar;
 import utilities.PagePath;
 import utilities.PropertiesFile;

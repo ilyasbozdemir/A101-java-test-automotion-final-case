@@ -14,7 +14,7 @@ public class BaseTest implements Testable {
     WebDriverWait driverWait;
     protected HomePage homePage;
     protected LoginOrSignUpPage loginOrSignUpPage;
-    protected BasketPage basketPage;
+    protected CardPage basketPage;
     protected ProductsPage productsPage;
     protected ProductDetailsPage productDetailsPage;
     @BeforeTest
@@ -24,7 +24,7 @@ public class BaseTest implements Testable {
         driver=Driver.getDriver();
         homePage= new pages.HepsiBurada.HomePage(driver);
         loginOrSignUpPage= new pages.HepsiBurada.LoginOrSignUpPage(driver);
-        basketPage= new pages.HepsiBurada.BasketPage(driver);
+        basketPage= new CardPage(driver);
         productsPage= new pages.HepsiBurada.ProductsPage(driver);
         productDetailsPage=new pages.HepsiBurada.ProductDetailsPage(driver);
         driverWait= new WebDriverWait(driver, Duration.ofMillis(5000));
