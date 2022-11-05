@@ -20,7 +20,6 @@ public  class BasePage {
     public String getTitle;
 
 
-
     public void hover(By locator){
         Actions action = new Actions(driver);
         action.moveToElement(find(locator)).perform();
