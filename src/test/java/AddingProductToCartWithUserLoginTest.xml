@@ -1,0 +1,12 @@
+<suite name="TestNG Listener">
+    <listeners>
+        <listener class-name="tests.Listeners"/>
+    </listeners>
+
+    <test name="Adding Product To Cart With User Login Test">
+        <classes>
+            <class name="tests.AddingProductToCartWithUserLoginTest"/>
+        </classes>
+    </test>
+
+</suite>

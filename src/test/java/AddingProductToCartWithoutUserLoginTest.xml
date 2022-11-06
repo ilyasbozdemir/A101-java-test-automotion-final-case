@@ -1,0 +1,24 @@
+<suite name="TestNG Listener">
+    <listeners>
+        <listener class-name="tests.Listeners"/>
+    </listeners>
+    <test name="Adding Product To Cart Without User Login Test">
+        <classes>
+            <class name="tests.AddingProductToCartWithOUTUserLoginTest">
+                <methods>
+                    <!--
+                      <include name="step1"/>
+                      <exclude name="step2"/>
+                      <exclude name="step3"/>
+                      <exclude name="step4"/>
+                      <include name="step5"/>
+                      <include name="step6"/>
+                      <include name="step7"/>
+
+                       include ekleme, exclude çıkarma   -->
+
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
