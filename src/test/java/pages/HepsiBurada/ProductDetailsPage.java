@@ -15,15 +15,17 @@ public class ProductDetailsPage  extends BasePage{
     public By merchantTabTriggerLocator=
             getPropertiesToXPath(PagePath.productDetailsPagePath,"merchantTabTriggerLocator");
     public By merchantListLocator= new By.ByClassName("merchant-list-item");
+    public By merchantNameLocator=  By.xpath("/td[2]/div/a[2]/span");
+    //merchantListLocator içinde ki xpath
+
     public By productName = By.xpath("//*[@id=\"detail-container\"]/div/header/span");
 
-    public By merchantName = By.xpath("//*[@id=\"detail-container\"]/div/span/a");
+    public WebElement merchantName;
     public int merchantCount = 0;
     public By merchantCountLocator=By.xpath("//*[@id=\"merchantTabTrigger\"]/a/span/span");
 
     public ProductDetailsPage(WebDriver driver){
         super.driver=driver;
-
     }
 
     public List<WebElement> merchantList(){
@@ -32,33 +34,12 @@ public class ProductDetailsPage  extends BasePage{
     public String getProductName(){
 
         return find(productName).getAttribute("innerText").trim();
-
     }
     public String getMerchantName(){
-        return find(merchantName).getAttribute("innerText").trim();
+        return merchantName.getAttribute("innerText").trim();
     }
 
     public void addToCard(){
-
         click(addToCardButtonLocator);
     }
-    public void addToCardData(){
-
-        /*
-
-        if (i==0){
-            PropertiesFile.setProperties(PagePath.basketPagePath,
-                    "firstProductName",getProductName(),"setData");
-            PropertiesFile.setProperties(PagePath.basketPagePath,
-                    "firstMerchantName",getMerchantName(),"setData");
-        }
-        else{
-            PropertiesFile.setProperties(PagePath.basketPagePath,
-                    "secondProductName",getProductName(),"setData");
-            PropertiesFile.setProperties(PagePath.basketPagePath,
-                    "secondMerchantName",getMerchantName(),"setData");
-        }
-        */
-    }
-
 }

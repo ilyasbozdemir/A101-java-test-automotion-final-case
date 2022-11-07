@@ -18,6 +18,7 @@ public class ProductsPage extends BasePage{
     CardPage basketPage;
     public WebElement selectedProduct;
 
+
     public ProductsPage(WebDriver driver){
         super.driver=driver;
     }
@@ -32,7 +33,7 @@ public class ProductsPage extends BasePage{
         hover(selectedProduct);
     }
 
-    public void productsAddToCart() throws InterruptedException {
+    public void productsAddToCart()  {
 
         productDetailsPage = new ProductDetailsPage(driver);
         basketPage= new CardPage(driver);
@@ -45,29 +46,41 @@ public class ProductsPage extends BasePage{
                 scrollIntoElementAndClick(productDetailsPage.merchantTabTriggerLocator);
                 productDetailsPage.merchantCount = Integer
                         .parseInt(find(productDetailsPage.merchantCountLocator).getText());
+
                 String title = getTitle();
+
                 if(productDetailsPage.merchantCount >= 2){
                     for(int i=0;i<2;i++){
+                        try{
+                            WebElement merchantElement = productDetailsPage.merchantList().get(i);
 
-                        WebElement merchantElement = productDetailsPage.merchantList().get(i);
+                            merchantElement.click();
+                            productDetailsPage.merchantName=merchantElement
+                                    .findElement(productDetailsPage.merchantNameLocator);
+                            System.out.println("isDisplayed"+productDetailsPage.merchantName.isDisplayed());
 
-                        merchantElement.click();
+                            if(i==0){
+                                firstProductName = productDetailsPage.getProductName();
+                                firstMerchantName = productDetailsPage.getMerchantName();
+                            }
+                            else if(i==1){
+                                secondProductName=productDetailsPage.getProductName();
+                                secondMerchantName=productDetailsPage.getMerchantName();
+                            }
 
-                        if(i==0){
-                            firstProductName=productDetailsPage.getProductName();
-                            //firstMerchantName=productDetailsPage.getMerchantName();//Urlden alıncak
+                            productDetailsPage.addToCard();
+
+                            driver.navigate().back();
+                            WebDriverWait driverWait = new WebDriverWait(driver,Duration.ofMillis(10000));
+
+                            Assert.assertTrue(driverWait.until(ExpectedConditions.titleIs(title)));
+                            scrollIntoElementAndClick(productDetailsPage.merchantTabTriggerLocator);
                         }
-                        else if(i==1){
-                            secondProductName=productDetailsPage.getProductName();
-                           // secondMerchantName=productDetailsPage.getMerchantName();
+                        catch (Exception e)
+                        {
+
                         }
 
-                        productDetailsPage.addToCard();
-
-                        driver.navigate().back();
-                        WebDriverWait driverWait = new WebDriverWait(driver,Duration.ofMillis(10000));
-                        Assert.assertTrue(driverWait.until(ExpectedConditions.titleIs(title)));
-                        scrollIntoElementAndClick(productDetailsPage.merchantTabTriggerLocator);
                     }
                 }
                 break;

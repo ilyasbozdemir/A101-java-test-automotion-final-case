@@ -1,16 +1,12 @@
 package tests;
-import org.openqa.selenium.JavascriptExecutor;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilities.PagePath;
 import utilities.PropertiesFile;
-
 import java.awt.*;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.time.Duration;
 
 @Test

@@ -36,6 +36,6 @@ public class BaseTest implements Testable {
     @AfterTest
     @Override
     public void afterMethod() {
-        //Driver.closeDriver();
+        Driver.closeDriver();
     }
 }

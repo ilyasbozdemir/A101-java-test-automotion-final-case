@@ -1,17 +1,11 @@
 package pages.HepsiBurada;
 
-import com.google.common.base.Splitter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utilities.PagePath;
 
-import java.awt.*;
-import java.io.UnsupportedEncodingException;
-import java.net.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class CardPage extends BasePage{
     public CardPage(WebDriver driver){
@@ -34,30 +28,25 @@ public class CardPage extends BasePage{
     public WebElement productQuantity;
     //
 
-    public static  String splitQuery(String url,String key)  {
-
-        String query = url.split("\\?")[1];
-
-        final Map<String, String> map = Splitter.on('&')
-                .trimResults().withKeyValueSeparator('=')
-                .split(query);
-        key="magaza";
-        return map.get(key);
-    }
     public void goToCartVerifyCart() {
         driver.get("https://checkout.hepsiburada.com/sepetim");
 
 
     for(int i=0;i<findAll(productName).size();i++){
         boolean state1=false,state2=false;
+
         if(i==0){
-            state1=firstProductName.equals(findAll(productName).get(i).getText());
+            System.out.println(firstProductName+ " " +  findAll(productName).get(i).getText());
+
         }
         else{
-            state2=secondProductName.equals(findAll(productName).get(i).getText());
+            System.out.println(secondProductName+ " " +  findAll(productName).get(i).getText());
+
         }
 
+
         System.out.println(state1+ " " +  state2);
+        System.out.println(firstMerchantName+ " " +  secondMerchantName);
 
         if(state1 && state2){
 
