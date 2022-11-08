@@ -4,56 +4,62 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import tests.entities.Product;
 import utilities.PagePath;
 
+import java.util.Locale;
 
-public class CardPage extends BasePage{
-    public CardPage(WebDriver driver){
-        super.driver=driver;
-        this.getUrl="";
+
+public class CardPage extends BasePage {
+    public CardPage(WebDriver driver) {
+        super.driver = driver;
+        this.getUrl = "";
     }
+
     public By gotoCartLocator =
-            getPropertiesToXPath(PagePath.basketPagePath,"gotoCartLocator");
-    public By BasketEmptyLocator =new By.ByClassName("content_Z9h8v");
+            getPropertiesToXPath(PagePath.basketPagePath, "gotoCartLocator");
+    public By BasketEmptyLocator = new By.ByClassName("content_Z9h8v");
 
-    public By  basketItemCount=
-            getPropertiesToXPath(PagePath.basketPagePath,"basketItemCount");
+    public By basketItemCount =
+            getPropertiesToXPath(PagePath.basketPagePath, "basketItemCount");
 
-    public By productName =new By.ByClassName("product_name_3Lh3t");
+    public By productName = new By.ByClassName("product_name_3Lh3t");
+    public By productNameFirstElement = new By.ByClassName("product_name_3Lh3t:nth(0)");
     //
-    public By merchantName =new By.ByClassName("merchantLink_2Ii8s");
+    public By merchantName = new By.ByClassName("merchantLink_2Ii8s");
     //
-    public By containerLocator =new By.ByClassName("container_HX1zs");//product count container
+    public By containerLocator = new By.ByClassName("container_HX1zs");//product count container
 
     public WebElement productQuantity;
-    //
 
-    public void goToCartVerifyCart() {
+    public boolean IsTheProductOnTheList(Product product) {
+
+        for (Product p : super.productList) {
+            if (product == p)
+                return true;
+        }
+        return false;
+    }
+
+    public boolean goToCartVerifyCart() {
         driver.get("https://checkout.hepsiburada.com/sepetim");
 
+        int counter = 0;
 
-    for(int i=0;i<findAll(productName).size();i++){
-        boolean state1=false,state2=false;
+        for (int i = 0; i < findAll(productName).size(); i++) {
 
-        if(i==0){
-            System.out.println(firstProductName+ " " +  findAll(productName).get(i).getText());
+            WebElement currentProductElement = findAll(productNameFirstElement).get(i);
+            WebElement currentMerchantElement = findAll(merchantName).get(i);
+            Product p = new Product();
+            p.merchantName = currentMerchantElement.getText().toLowerCase(Locale.ENGLISH);
+            p.productName = currentProductElement.getText().toLowerCase(Locale.ENGLISH);
+
+            if (IsTheProductOnTheList(p))
+                counter++;
 
         }
-        else{
-            System.out.println(secondProductName+ " " +  findAll(productName).get(i).getText());
 
-        }
-
-
-        System.out.println(state1+ " " +  state2);
-        System.out.println(firstMerchantName+ " " +  secondMerchantName);
-
-        if(state1 && state2){
-
-            JavascriptExecutor js = (JavascriptExecutor)driver;
-            js.executeScript("alert('Congratulations, your test was successful.');");
-        }
+        return counter == 2 ? true : false;
     }
-}
 
 }

@@ -6,35 +6,35 @@ import java.util.Properties;
 public class PropertiesFile {
     static Properties prop = new Properties();
 
-    static  File projectDirectory = new File(System.getProperty("user.dir"));
+    static File projectDirectory = new File(System.getProperty("user.dir"));
     static File subDirectory = new File(projectDirectory, "env");
     static File configuration = new File(subDirectory, "configuration.properties");
     static File homePage = new File(subDirectory, "pages\\homePage.properties");
-    static  File basketPage = new File(subDirectory, "pages\\basketPage.properties");
+    static File basketPage = new File(subDirectory, "pages\\basketPage.properties");
     static File loginOrSignUpPage = new File(subDirectory, "pages\\loginOrSignUpPage.properties");
     static File productsPage = new File(subDirectory, "pages\\products.properties");
     static File productDetailsPage = new File(subDirectory, "pages\\productDetails.properties");
 
 
-    private static  String getFilePath(PagePath path){
+    private static String getFilePath(PagePath path) {
 
-        if(path== PagePath.homePagePath)
+        if (path == PagePath.homePagePath)
             return homePage.getPath();
-        else if(path== PagePath.productsPagePath)
+        else if (path == PagePath.productsPagePath)
             return productsPage.getPath();
-        else if(path== PagePath.productDetailsPagePath)
+        else if (path == PagePath.productDetailsPagePath)
             return productDetailsPage.getPath();
-        else if(path== PagePath.loginOrSignUpPagePath)
+        else if (path == PagePath.loginOrSignUpPagePath)
             return loginOrSignUpPage.getPath();
-        else if(path== PagePath.basketPagePath)
+        else if (path == PagePath.basketPagePath)
             return basketPage.getPath();
         else
             return configuration.getPath();
 
     }
 
-    static public void setProperties(PagePath path, String key, String value, String comments){
-        String filePath= getFilePath(path);
+    static public void setProperties(PagePath path, String key, String value, String comments) {
+        String filePath = getFilePath(path);
         File file = new File(filePath);
         try {
             OutputStream output = new FileOutputStream(file);
@@ -46,9 +46,10 @@ public class PropertiesFile {
             exp.printStackTrace();
         }
     }
-    static public String getProperties(PagePath path, String key){
-        String data="";
-        String filePath= getFilePath(path);
+
+    static public String getProperties(PagePath path, String key) {
+        String data = "";
+        String filePath = getFilePath(path);
         File file = new File(filePath);
         try {
             InputStream input = new FileInputStream(file);
@@ -61,6 +62,6 @@ public class PropertiesFile {
             System.out.println(exp.getCause());
             exp.printStackTrace();
         }
-        return  data;
+        return data;
     }
 }

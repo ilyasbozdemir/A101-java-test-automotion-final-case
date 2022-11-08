@@ -6,76 +6,96 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tests.entities.Product;
 import utilities.PagePath;
 import utilities.PropertiesFile;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
-public  class BasePage {
+public class BasePage {
 
-    WebDriver driver ;
+    WebDriver driver;
     public String getUrl;
     public String expectedTitle;
     public String getTitle;
 
-    public static String firstProductName;
-    public static String firstMerchantName;
-    public static String secondProductName;
-    public static String secondMerchantName;
+    public static ArrayList<Product> productList = new ArrayList<Product>();
 
-
-    public void hover(By locator){
+    public void hover(By locator) {
         Actions action = new Actions(driver);
         action.moveToElement(find(locator)).perform();
     }
-    public void hover(WebElement Element){
+
+    public void hover(WebElement Element) {
         Actions action = new Actions(driver);
         action.moveToElement(Element).perform();
     }
+
     public void scrollIntoElement(By locator) {
         Actions a = new Actions(driver);
         a.moveToElement(find(locator));
         a.perform();
     }
+
     public void scrollIntoElement(WebElement element) {
         Actions a = new Actions(driver);
         a.moveToElement(element);
         a.perform();
     }
-    public WebElement find(By locator){
+
+    public WebElement find(By locator) {
         return driver.findElement(locator);
     }
-    public String getTitle(){
+
+    public String getTitle() {
         return driver.getTitle();
     }
 
-    public String getText(By locator){
+    public String getText(By locator) {
         return find(locator).getText();
     }
 
-    public List<WebElement> findAll(By locator){
+    public List<WebElement> findAll(By locator) {
         return driver.findElements(locator);
     }
-    public void click(By locator){
+
+    public List<WebElement> getChilds(WebElement parentElement) {
+        return parentElement.findElements(By.xpath("./child::*"));
+    }
+
+    public void click(By locator) {
 
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(locator)).click();
 
     }
-    public void type(By locator , String text){
+
+    public void type(By locator, String text) {
         find(locator).sendKeys(text);
     }
 
-    public Boolean isDisplayed(By locator){
+    public Boolean isDisplayed(By locator) {
         return find(locator).isDisplayed();
     }
-    public  By getPropertiesToXPath(PagePath path, String Key){
-       return By.xpath( PropertiesFile.getProperties(path,Key));
+
+    public By getPropertiesToXPath(PagePath path, String Key) {
+        return By.xpath(PropertiesFile.getProperties(path, Key));
     }
-    public void scrollIntoElementAndClick(By locator){
+
+    public void scrollIntoElementAndClick(By locator) {
         scrollIntoElement(locator);
         click(locator);
     }
 
+
+    public void pageLoadTimeout(Duration duration) {
+        driver.manage().timeouts().pageLoadTimeout(duration);
+
+    }
+
+    public void implicitlyWait(Duration duration) {
+        driver.manage().timeouts().implicitlyWait(duration);
+    }
 }
