@@ -74,7 +74,6 @@ public class AddingProductToCartWithUserLoginTest extends BaseTest {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("alert('Congratulations, your test was successful.');");
         }
-
         Assert.assertTrue(state, "Congratulations, your test was successful.");
     }
 }

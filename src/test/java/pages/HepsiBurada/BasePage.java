@@ -21,7 +21,7 @@ public class BasePage {
     public String expectedTitle;
     public String getTitle;
 
-    public static ArrayList<Product> productList = new ArrayList<Product>();
+    public static ArrayList<Product> productList = new ArrayList<>();
 
     public void hover(By locator) {
         Actions action = new Actions(driver);

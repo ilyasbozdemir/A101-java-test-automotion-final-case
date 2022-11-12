@@ -19,7 +19,6 @@ public class ProductsPage extends BasePage {
     CardPage basketPage;
     public WebElement selectedProduct;
 
-
     public ProductsPage(WebDriver driver) {
         super.driver = driver;
     }
@@ -73,6 +72,7 @@ public class ProductsPage extends BasePage {
                         WebElement merchantNameElement = productDetailsPage.merchantName(i);
 
                         Product product = new Product();
+
                         product.productName = productDetailsPage.getProductName();
                         product.merchantName = merchantNameElement.getText();
 
@@ -93,6 +93,7 @@ public class ProductsPage extends BasePage {
         }
         driver.close();
         driver.switchTo().window(firstWindow);
+
     }
 
 
